@@ -91,6 +91,10 @@ form button {
    margin-top: 15px;
 }
 
+#messages .author strong {
+   color: #3498db;
+}
+
 #messages .userJoin {
    margin-top: 15px;
    color: #2ecc71;

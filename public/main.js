@@ -66,7 +66,7 @@ $(function() {
         console.log(message)
         
         if (message.author.name != prevMessage.author.name) {
-            $('document').append(`<li class='author'><strong>${message.author.name}</strong> <span class='time'>${curTime()}</span> </li><li>${message.text}</li>`)
+            $('#messages').append(`<li class='author'><strong>${message.author.name}</strong> <span class='time'>${curTime()}</span> </li><li>${message.text}</li>`)
         }
         else {
             $('#messages').append(`<li>${message.text}</li>`)
