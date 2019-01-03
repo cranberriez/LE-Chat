@@ -1,0 +1,22 @@
+{
+  "name": "socketio-chat",
+  "version": "1.0.0",
+  "description": "socketio chat testing",
+  "main": "server.js",
+  "scripts": {
+    "test": "server.js"
+  },
+  "keywords": [
+    "socketio",
+    "socket",
+    "node",
+    "chat"
+  ],
+  "author": "Jacob Vilevac",
+  "license": "ISC",
+  "dependencies": {
+    "bad-words": "^3.0.0",
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
+  }
+}

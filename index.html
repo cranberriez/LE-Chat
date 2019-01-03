@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>LE Chatbox</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+  </head>
+  <body>
+    <ul id="messages">
+      
+    </ul>
+    <div class='actionBar'>
+      <form action="">
+        <div class='msgInput'>
+            <input id="m" autocomplete="off" placeholder='Message'/>
+            <p class='letCount'></p>
+        </div>
+        <button>Send</button>
+      </form>
+    </div>
+    <script src='/socket.io/socket.io.js'></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src='/main.js'></script>
+  </body>
+</html>
