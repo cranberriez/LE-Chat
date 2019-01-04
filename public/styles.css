@@ -8,34 +8,124 @@
 
 html {
    background-color: #111;
+   font:  36px sans-serif; 
 }
 
 body { 
-   font: 16px sans-serif; 
-   background-color: #111;
-   padding-bottom: 80px;
+   padding-bottom: 105px;
    min-height: 100vh;
+   color: #eee;
+}
+
+form button:not(#mobileSubmit) {display: none;}
+@media only screen and (min-width: 1000px) {
+   html {
+      font: 30px sans-serif; 
+   }
+   form button:not(#mobileSubmit) {
+      display: inline;
+   }
+   form #mobileSubmit {
+      display: none;
+   }
+}
+
+@media only screen and (min-width: 1300px) {
+   html {
+      font: 16px sans-serif; 
+   }
+   form button:not(#mobileSubmit) {
+      display: inline;
+   }
+   form #mobileSubmit {
+      display: none;
+   }
+}
+
+.flex-center {
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .actionBar {
    background-color: #111;
+   width: 100%;
+   position: fixed;
+   bottom: 0; 
+}
+
+.actionBar .infoBar {
+   padding: 0.7em;
+   padding-bottom: 0;
+   display: flex;
+   align-items: center;
+}
+
+.actionBar .config-container {
+   display: flex;
+   align-items: center;
+   border-radius: 150px;
+   background-color: #141414;
+   padding-right: 5px;
+}
+
+.config-container .setting {
+   cursor: pointer;
+}
+
+.actionBar .config-container.active .fa-cog {display: none;}
+.actionBar .config-container .fa-times {display: none;}
+.actionBar .config-container.active .fa-times {display: inline;}
+.actionBar .config-container.active .config {padding: 0.7em 0.856em}
+.actionBar .config-container .setting {display: none;}
+.actionBar .config-container.active .setting {display: inline;}
+.actionBar .config-container .color {display: none;}
+.actionBar .config-container.colors .color {display: inline;}
+.actionBar .config-container.colors .setting {display: none;}
+
+.actionBar .infoBar .config {
+   background: #191919;
+   padding: 0.7em;
+   font-size: 1em;
+   border-radius: 150px;
+   color: #777;
+   cursor: pointer;
+}
+
+.actionBar .infoBar .color {
+   width: 1.5em;
+   height: 1.5em;
+   border-radius: 150px;
+   cursor: pointer;
+   margin: 0 8px;
+}
+
+.actionBar .infoBar .color.current {
+   border: 2px solid #34495e;
+}
+
+.actionBar .infoBar p {
+   padding: 0.7em;
+}
+
+.actionBar .infoBar .username {
+   font-weight: bold;
 }
 
 form { 
    background: inherit; 
-   position: fixed; 
-   bottom: 0; 
    width: 100%; 
    display: flex;
    align-items: center;
    justify-content: space-between;
-   padding: 15px;
+   padding: 0.7em;
+   padding-top: 0.5em;
 }
 
 form .msgInput { 
-   padding: 0 10px 0 15px;
+   padding: 0.7em 1em;
    flex-grow: 1;
-   height: 40px;
    background: #191919;
    border-radius: 100px;
    display: flex;
@@ -46,31 +136,34 @@ form .msgInput {
 form input {
    background: transparent;
    color: #fff;
-   font-size: 14px;
+   font-size: 0.85em;
    height: 100%;
    width: 100%;
-   line-height: 40px;
    padding-right: 5px;
 }
 
 form .letCount {
    color: #3498db;
-   font-size: 12px;
+   font-size: 0.7em;
    background: transarent;
    height: 100%;
-   line-height: 40px;
    margin-right: 5px;
 }
 form .letCount.zero {color: #888;}
 form .letCount.negative {color: #e74c3c;}
 
-form button { 
-   width: 50px;
+form button {
    color: #fff;
-   background: inherit;
-   height: 40px;
+   background: #3498db;
    cursor: pointer;
    margin-left: 10px;
+   font-size: 0.9em;
+   padding: 0.7em 1em;
+   border-radius: 150px;
+}
+
+#uuid-SERVER:before {
+   content: '';
 }
 
 #messages { 
@@ -85,14 +178,11 @@ form button {
    padding: 5px 30px 0px 30px;
    max-width: 100vw;
    color: #eee;
+   position: relative;
 }
 
 #messages .author {
    margin-top: 15px;
-}
-
-#messages .author strong {
-   color: #3498db;
 }
 
 #messages .userJoin {
@@ -110,7 +200,7 @@ form button {
 }
 
 #messages li .time {
-   font-size: 11px;
+   font-size: 0.7em;
    line-height: 13px;
    color: #999;
    line-height: 16px;

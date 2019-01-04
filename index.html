@@ -3,18 +3,42 @@
   <head>
     <title>LE Chatbox</title>
     <link rel="stylesheet" type="text/css" href="/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   </head>
   <body>
     <ul id="messages">
       
     </ul>
     <div class='actionBar'>
+      <div class='infoBar'>
+        <div class='config-container'>
+          <button class='config flex-center'>
+            <i class="fas fa-cog"></i>
+            <i class="fas fa-times"></i>
+          </button>
+          <p class='username'></p>
+          <p class='setting' id='changename'>Change Name</p>
+          <p class='setting' id='changecolor'>Change Color</p>
+          <!-- <p class='setting' id='chatcommand'>Chat Commands</p> -->
+          <p class='setting' id='reportabuse'>Report Abuse</p>
+          <div class='color' style='background-color: #1abc9c'></div>
+          <div class='color' style='background-color: #2ecc71'></div>
+          <div class='color' style='background-color: #3498db'></div>
+          <div class='color' style='background-color: #9b59b6'></div>
+          <div class='color' style='background-color: #f1c40f'></div>
+          <div class='color' style='background-color: #e67e22'></div>
+          <div class='color' style='background-color: #e74c3c'></div>
+          <div class='color' style='background-color: #ecf0f1'></div>
+          <div class='color' style='background-color: #95a5a6'></div>
+        </div>
+      </div>
       <form action="">
         <div class='msgInput'>
             <input id="m" autocomplete="off" placeholder='Message'/>
             <p class='letCount'></p>
         </div>
         <button>Send</button>
+        <button id='mobileSubmit'><i class="fas fa-paper-plane"></i></button>
       </form>
     </div>
     <script src='/socket.io/socket.io.js'></script>

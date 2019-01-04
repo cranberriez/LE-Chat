@@ -38,39 +38,83 @@ function makeid() {
     for (var i = 0; i < 11; i++)
       id += possible.charAt(Math.floor(Math.random() * possible.length));
     
-    localStorage['id'] = id
     return id;
 }
 
-var user = {
-    name: localStorage['username'] || uname(),
-    createdAt: unixTime(),
-    uuid: localStorage['id'] || makeid()
-}
-
 function uname() {
-    uname = prompt('Enter your username.')
-    while (unameCheck(uname)) {
-        uname = prompt('Enter your username.')
+    name = prompt('Enter the username you would like to use')
+    while (unameCheck(name)) {
+        name = prompt('Enter the username you would like to use')
     }
-    localStorage['username'] = uname
-    return uname
+    return name
 }
 
-var prevMessage = {author: {name: "!"}}
+function updateUser() {
+    $('.username').text(user.name)
+    $('.username').css('color', user.color)
+    localStorage['user'] = JSON.stringify(user)
+}
+
+var user = {}
+storedUser = localStorage['user']
+if (storedUser == undefined) {
+    user = {
+        name: uname(),
+        createdAt: unixTime(),
+        color: '#ecf0f1',
+        uuid: makeid()
+    }
+}
+else {
+    user = JSON.parse(storedUser)
+}
+
 $(function() {
+    var prevMessage = {author: {name: ""}}
     var socket = io()
     socket.emit('newUser', user)
 
+    updateUser()
+
+    $(".config").on('click', function() {
+        if ($('.config-container').hasClass('active')) {
+            $('.config-container').removeClass('active')
+            $('.config-container').removeClass('colors')
+        }
+        else {
+            $('.config-container').addClass('active')
+        }    
+    })
+
+    $('#changename').on('click', function(){
+        oldname = user.name
+        newname = uname()
+        if (newname != 'null') {
+            user.name = newname
+            updateUser()
+            socket.emit('rename', user, oldname)
+        }
+    })
+    $('#changecolor').on('click', function(){
+        $('.config-container').addClass('colors')
+    })
+    $('.color').on('click', function() {
+        user.color = $(this).css('background-color')
+        updateUser()
+    })
+    $('#reportabuse').on('click', function() {
+        prompt('Please provide the user\'s name and background information')
+        alert('Info has been submitted and will be reviewed')
+    })
+
     socket.on('message', function(message) {
-        console.log(message)
-        
         if (message.author.name != prevMessage.author.name) {
-            $('#messages').append(`<li class='author'><strong>${message.author.name}</strong> <span class='time'>${curTime()}</span> </li><li>${message.text}</li>`)
+            $('#messages').append(`<li class='author' id='uuid-${message.author.uuid}'><strong style='color:${message.author.color}'>${message.author.name}</strong> <span class='time'>${curTime()}</span> </li><li>${message.text}</li>`)
         }
         else {
             $('#messages').append(`<li>${message.text}</li>`)
         }
+        $("html").scrollTop($(document).height())
         prevMessage = message
     })
 
